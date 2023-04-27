@@ -2,6 +2,7 @@ import assert from 'assert'
 import {getByUserId, getByUserName, getUserByPoliciesId }from "../services/user.js"
 import mongoose from 'mongoose'
 import { generateAuth ,isAdmin } from '../services/utils.js';
+
 describe("Find value in database", function() {
 
     process.env.MONGODB_URI = 'mongodb://127.0.0.1:27017/mocky'
@@ -45,4 +46,13 @@ describe("Find value in database", function() {
         assert.equal(result,1)
 
     });
+
+    it("should be able to find user by policie Id", async function() {
+
+        const result = await getUserByPoliciesId("56b415d6-53ee-4481-994f-4bffa47b5239");
+        assert.equal("e8fd159b-57c4-4d36-9bd7-a59ca13057bb",result.id)
+    });
+
+    //need to test get by name;
+    // get policies by usernames
 });
