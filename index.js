@@ -3,7 +3,6 @@ import express from 'express'
 import mongoose  from "mongoose";
 import bodyParser from "body-parser"
 import {handleUserRequest} from "./controllers/userController.js"
-
 import {generateAuth} from './services/utils.js';
 import { handlePoliciesRequest } from './controllers/policiesController.js';
 
@@ -21,6 +20,7 @@ if (env === 'local' || env === 'test') {
 } else {
   process.env.MONGODB_URI = 'mongodb://mongo:27017/mocky'
 }
+mongoose.set('strictQuery',true);
 mongoose.connect(process.env.MONGODB_URI);
 
 //Router that handle of the request that will return an User or an array of User
@@ -45,5 +45,6 @@ router.get("/policies", async function(req,res){
 })
 
 app.listen(3000, async function () {
+  console.log("App up and runnning, listening on port 3000")
 });
 app.use(router);
