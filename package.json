@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "populate-database": "mongoimport --db mocky --collection users --file resources/client.json mongodb://mongo:27017 --jsonArray && mongoimport --db mocky --collection policies --file resources/policies.json --jsonArray mongodb://mongo:27017",
+    "populate-database:local": "mongoimport --db mocky --collection users --file resources/client.json --jsonArray && mongoimport --db mocky --collection policies --file resources/policies.json --jsonArray ",
+    "populate-database:docker": "mongoimport --db mocky --collection users --file resources/client.json mongodb://mongo:27017 --jsonArray && mongoimport --db mocky --collection policies --file resources/policies.json --jsonArray mongodb://mongo:27017",
     "test": "mocha test/model.test.js --timeout 10000 --exit"
   },
   "author": "",
