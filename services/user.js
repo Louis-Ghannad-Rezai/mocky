@@ -6,21 +6,21 @@ import { generateToken, generateDate } from "./utils.js";
 
 export async function getByUserId(idUser){
     
-    let user =  await userModel.findOne({id : idUser})
+    let user =  await userModel.findOne({id : idUser});
     if (user){
         return user;     
     }
-    console.log("No user found with the id :" + idUser)
+    console.log("No user found with the id :" + idUser);
    return 1;
 }
 
 export async function getByUserName(nameUser){
 
-    let user =  await userModel.findOne({name : nameUser})
+    let user =  await userModel.findOne({name : nameUser});
     if (user){
         return user;     
     }
-    console.log("No user found with the id :" + nameUser)
+    console.log("No user found with the id :" + nameUser);
    return 1;
 }
 
@@ -28,7 +28,7 @@ export async function getByUserName(nameUser){
 export async function getUserByPoliciesId(policiesId){
     let policie = await policiesModel.findOne({id : policiesId});
     if (policie != null){
-        let user = userModel.findOne({id : policie.clientId})
+        let user = userModel.findOne({id : policie.clientId});
         if (user != null){
             return user;
         }

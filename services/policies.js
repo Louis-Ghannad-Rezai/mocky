@@ -7,17 +7,16 @@ import { policiesModel } from "../models/policiesSchema.js";
 export async function getPoliciesByUserName(userName){
 
    let user =  await userModel.findOne({name : userName})
-   if (user){
-
-   let policies = await policiesModel.find({clientId : user?.id})
-   if (policies == []){
-    console.log("No policies found for the given username")
-   }
-   else
-    return policies;
-}
-else {
-    console.log(" No user found with the username")
-    return []
-}
+    if (user){
+        let policies = await policiesModel.find({clientId : user?.id});
+        if (policies == []){
+            console.log("No policies found for the given username");
+        }
+        else
+            return policies;
+    }
+    else {
+        console.log(" No user found with the username");
+        return [];
+    }
 }

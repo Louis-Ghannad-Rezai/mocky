@@ -18,8 +18,7 @@ const env = process.env.NODE_ENV || '';
 
 if (env === 'local' || env === 'test') {
   process.env.MONGODB_URI = 'mongodb://127.0.0.1:27017/mocky'
-} else 
-{
+} else {
   process.env.MONGODB_URI = 'mongodb://mongo:27017/mocky'
 }
 mongoose.connect(process.env.MONGODB_URI);

@@ -11,7 +11,7 @@ export async function  handleUserRequest(req,res){
         let val = await  getByUserId(req?.query?.id);
           if (val != 1){
             res.status(200).send(val);
-          } else
+          }else
             res.sendStatus(204);
       }
       else if (req?.query?.name){
