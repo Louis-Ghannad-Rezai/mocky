@@ -53,6 +53,20 @@ describe("Find value in database", function() {
         assert.equal("e8fd159b-57c4-4d36-9bd7-a59ca13057bb",result.id)
     });
 
+    
+    it("should be able to find user by name", async function() {
+
+        const result = await getByUserName("Manning");
+        assert.equal("e8fd159b-57c4-4d36-9bd7-a59ca13057bb",result.id)
+        
+    });
+
+    it("should not be able to find user by name", async function() {
+
+        const result = await getByUserName("notARealUsername");
+        assert.equal(1,result)
+
+    });
     //need to test get by name;
     // get policies by usernames
 });
