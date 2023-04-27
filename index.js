@@ -6,17 +6,28 @@ import fs from 'fs'
 let app = express();
 
 
-import { getByUserId,getByUserName,generateAuth,  getUserByPoliciesId } from './services/user.js';
+import { getByUserId,getByUserName,  getUserByPoliciesId } from './services/user.js';
 import { userModel } from './models/userSchema.js';
 import { policiesModel } from './models/policiesSchema.js';
 import { getPoliciesByUserName} from './services/policies.js'
-import {isAdmin} from './services/utils.js';
+import {isAdmin,generateAuth} from './services/utils.js';
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var router = express.Router();
-await mongoose.connect('mongodb://mongo:27017/mocky');
+//await mongoose.connect('mongodb://mongo:27017/mocky');
+
+const env = process.env.NODE_ENV || '';
+
+if (env === 'local' || env === 'test') {
+  process.env.MONGODB_URI = 'mongodb://127.0.0.1:27017/mocky'
+} else 
+{
+  process.env.MONGODB_URI = 'mongodb://mongo:27017/mocky'
+}
+console.log(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI);
 
 
 
@@ -55,7 +66,11 @@ router.get("/user", async function(req,res){
 router.post("/auth", async function(req,res){
   let username = req?.body?.name;
   let token = await generateAuth(username);
-  res.status(201).send(token);
+  if (token == 1){
+    res.status(204).send("authentification failed");
+  }
+  else
+    res.status(201).send(token);
 })
 
 
@@ -76,11 +91,5 @@ router.get("/policies", async function(req,res){
 )
 
 app.listen(3000, async function () {
-  //check if DB is up and running and if the data are in it. 
-  // if not, import it.
-  console.log(await userModel.countDocuments());
-
-  console.log(await policiesModel.countDocuments());
-console.log("check")
 });
 app.use(router);

@@ -1,6 +1,6 @@
 
 import { tokenModel } from "../models/tokenSchema.js";
-
+import { userModel } from "../models/userSchema.js";
 
 
 
@@ -17,6 +17,23 @@ export async function generateDate(){
     return date;
 
 }
+
+
+export async function generateAuth(username){
+    let user =  await userModel.findOne({name : username})
+    if (user != null){
+    let tokenValue = await generateToken();
+    let date = await generateDate();
+    let role = user?.role;
+
+    let token = new tokenModel({"token":tokenValue,"role":role,"date":date})
+    await token.save();
+    return token.token;
+    }
+    console.log("test")
+    return 1;
+}
+
 
 //check if the token used for the request have admin rights
 // params : String Token.
