@@ -48,6 +48,7 @@ If it is the first time that you run this application, you will have to populate
 npm run populate-database:local
 ~~~
 And set the local env to `local` before running the rest of the commands
+
 You should be able to now run either the test batch :
 ~~~bash
 npm test
