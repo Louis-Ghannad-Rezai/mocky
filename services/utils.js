@@ -44,7 +44,7 @@ export async function isAdmin(tokenToCheck){
     console.log("Checking if the token is an admin token");
     let checkToken = await tokenModel.findOne({token : tokenToCheck})
     if (checkToken?.role == "admin" && valideDate(checkToken?.date)){
-        console.log("Iit is an admin token");
+        console.log("It is an admin token");
         return 1;
     }
     console.log("User does not have the right to perfom this request");

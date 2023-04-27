@@ -1,10 +1,7 @@
 
 
 import { getByUserId,getByUserName,  getUserByPoliciesId } from '../services/user.js';
-import { userModel } from '../models/userSchema.js';
-import { policiesModel } from '../models/policiesSchema.js';
-import { getPoliciesByUserName} from '../services/policies.js'
-import {isAdmin,generateAuth} from '../services/utils.js';
+import {isAdmin} from '../services/utils.js';
 
 export async function  handleUserRequest(req,res){
     if (req.query.id){
