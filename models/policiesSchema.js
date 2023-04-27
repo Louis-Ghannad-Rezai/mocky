@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-import { serializeInteger } from 'whatwg-url';
 
 export const policiesSchema = new mongoose.Schema({
   id: String, // String is shorthand for {type: String}
@@ -10,4 +9,5 @@ export const policiesSchema = new mongoose.Schema({
   clientId: String
 });
  
-export const policiesModel = mongoose.model('policies', policiesSchema);
+export const policiesModel = mongoose.model('policie', policiesSchema);
+
