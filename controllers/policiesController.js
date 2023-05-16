@@ -9,10 +9,15 @@ export async function handlePoliciesRequest(req,res){
         res.sendStatus(401)
     }
     else {
-        if (req.query.name){
-            let val =  await getPoliciesByUserName(req.query.name);
+        if (req?.query?.name){
+            let val =  await getPoliciesByUserName(req?.query?.name);
+            if (val != []){
             res.status(200).send(val)
             }
+        else
+            res.status(204).send("No user found with the username")
+        }
+
         }      
     
 }
